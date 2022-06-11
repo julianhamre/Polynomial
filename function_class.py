@@ -112,39 +112,6 @@ def pol_solve(polynomial, start_value):
         count += 1
     return x
 
-"""
-def solve_next_root(polynomial, start_value):
-     f = polynomial
-     fd = f.differenciate()
-     if
-"""
-    
-
-"""
-a = [1, 2, 3]
-
-g = poly2(a)
-gd = g.differenciate()
-print(gd.coef)
-"""
-
-
-
-
-
-
-
-
-a = [3, 2, -10, 50]
-
-
-
-g = polynomial(a)
-print(g.get_coefficients())
-
-pol_plot(g, -5, 5)
-
-print(g.get_extremum(-5))
 
 
 
@@ -154,47 +121,5 @@ print(g.get_extremum(-5))
 
 
 
-"""
-a = [9.81, 22]
-p = polynomial(a)
-
-print(pol_solve(p, 1))
-
-"""
-
-"""
-print(f.evaluate(5))
-print(type(f))
-print(type("hello"))
-
-#print(pol_solve(f, 10000))
-"""
-
-"""
-f.add_constant(-3)
-print(f.get_coefficients())
-fd = f.differenciate()
-print(fd.get_coefficients())
-fd.add_constant(4)
-print(fd.get_coefficients())
-"""
-
-#pol_plot(f, -2, 2)
-#print(f.evaluate(3))
-#print(f.get_coefficients())
-#print(f.reverse)
-#print("f dif", f.differenciate())
-#print("g dif", g.differenciate())
 
 
-
-"""
-x = [0, 1, 2, 3, 4, 5]
-y = [0, 1, 4, 9, 16, 25]
-
-trend = np.polyfit(x, y, 2)
-fn = np.poly1d(trend)
-
-print(trend)
-print(fn)
-"""
