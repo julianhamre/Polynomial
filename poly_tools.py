@@ -36,7 +36,7 @@ class polynomial:
             y += term
         return y
              
-    def differenciate(self):
+    def differentiate(self):
        f = self.r_coef
        d = []
        for i in range(1, len(f)):
@@ -51,7 +51,7 @@ class polynomial:
         self.r_coef = reverse(self.coef)
         
     def get_extremum(self, start_value):
-        fd = self.differenciate()
+        fd = self.differentiate()
         solve = pol_solve(fd, start_value)
         return [solve, self.evaluate(solve)]
      
@@ -78,7 +78,7 @@ class poly2(polynomial):
             x = -b / (2*a)
             return x
         else:
-            raise RuntimeError(f"{self} has no roots")
+            raise RuntimeError(f"polynomial {self.get_coefficients()} has no roots")
     
     
 class grav_poly2(poly2):
@@ -102,24 +102,15 @@ def pol_plot(polynomial, start, end):
 
 def pol_solve(polynomial, start_value):
     f = polynomial
-    fd = f.differenciate()
+    fd = f.differentiate()
     x = start_value
     count = 0
     while abs(f.evaluate(x)) > 0.000001:
         if count > 100:
-            raise RuntimeError("No root found after 100 iterations")
+            raise RuntimeError(f"No root found found in {polynomial.get_coefficients()} after 100 iterations")
         x = x - f.evaluate(x) / fd.evaluate(x)
         count += 1
     return x
-
-
-
-
-
-
-
-
-
 
 
 
