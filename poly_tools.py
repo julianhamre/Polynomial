@@ -9,6 +9,7 @@ Created on Fri Jun  3 20:21:15 2022
 from matplotlib import pyplot as plt
 import numpy as np
 
+
 def reverse(a):
      r = []
      count = -1
@@ -56,7 +57,6 @@ class polynomial:
         return [solve, self.evaluate(solve)]
      
         
-
 class poly2(polynomial):
     def __init__(self, coef):
         length = len(coef)
@@ -88,8 +88,7 @@ class grav_poly2(poly2):
         b = velocity
         coef = [a, b, 0]
         super().__init__(coef)
-        
-         
+                 
 
 def pol_plot(polynomial, start, end):
     x = np.linspace(start, end, 1001)
@@ -111,6 +110,3 @@ def pol_solve(polynomial, start_value):
         x = x - f.evaluate(x) / fd.evaluate(x)
         count += 1
     return x
-
-
-
