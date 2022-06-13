@@ -24,11 +24,16 @@ class polynomial:
         self.coef = coef
         self.r_coef = reverse(coef)
         
-    def get_coefficients(self):
+    def get_coef(self):
         a = []
         for i in self.coef:
             a.append(i)
         return a
+    
+    def coef_as_list(self):
+        coef = self.get_coef()
+        self.coef = coef
+        self.r_coef = reverse(coef)
     
     def evaluate(self, x):
         y = self.r_coef[0]
@@ -78,7 +83,7 @@ class poly2(polynomial):
             x = -b / (2*a)
             return x
         else:
-            raise RuntimeError(f"polynomial {self.get_coefficients()} has no roots")
+            raise RuntimeError(f"polynomial {self.get_coef()} has no roots")
     
     
 class grav_poly2(poly2):
@@ -106,7 +111,7 @@ def pol_solve(polynomial, start_value):
     count = 0
     while abs(f.evaluate(x)) > 0.000001:
         if count > 100:
-            raise RuntimeError(f"No root found found in {polynomial.get_coefficients()} after 100 iterations")
+            raise RuntimeError(f"No root found found in {polynomial.get_coef()} after 100 iterations")
         x = x - f.evaluate(x) / fd.evaluate(x)
         count += 1
     return x
