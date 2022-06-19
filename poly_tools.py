@@ -41,7 +41,13 @@ class polynomial:
             term = self.r_coef[i]*x**i
             y += term
         return y
-             
+    
+    def evaluate_values(self, values):
+        evaluated = []
+        for v in values:
+            evaluated.append(self.evaluate(v))
+        return v
+         
     def differentiate(self):
        f = self.r_coef
        d = []
