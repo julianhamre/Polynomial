@@ -57,7 +57,15 @@ class testPoly(unittest.TestCase):
             meth_eval = poly.evaluate_values(values)
             meth_eval = round_numbers(meth_eval, 4)
             self.assertEqual(meth_eval, round_numbers(eval_1_and_2[i], 4))
-            
+    
+    def test_differentiate(self):
+        dif_1 = [6, 2]
+        dif_2 = [25, -8, 9.8826, -10, -9.52]
+        dif_1_and_2 = [dif_1, dif_2]
+        for i in range(0, self.ln):
+            poly = pt.polynomial(self.coef_1_and_2[i])
+            self.assertEqual(poly.differentiate().get_coef(), dif_1_and_2[i])
+
 
 if __name__ == "__main__":
     unittest.main()
