@@ -46,7 +46,7 @@ class polynomial:
         evaluated = []
         for v in values:
             evaluated.append(self.evaluate(v))
-        return v
+        return evaluated
          
     def differentiate(self):
        f = self.r_coef
