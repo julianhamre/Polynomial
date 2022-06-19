@@ -37,8 +37,26 @@ class testPoly(unittest.TestCase):
         for i in range(0, self.ln):
             poly = self.array_poly(i)
             poly.coef_as_list()
-            self.assertEqual(poly.coef, self.coef_1_and_2[i])
+            self.assertEqual(poly.coef, self.coef_1_and_2[i])        
 
+    def round_numbers(self, numbers, decimals):
+        rounded = []
+        for n in numbers:
+            rounded.append(round(n, decimals))
+        return rounded
+    
+    def test_evaluate(self):
+        values = [0, 3, -2.54, 50]
+        coef_1_eval = [4, 37, 18.2748, 7604]
+        coef_2_eval = [-2, 1066.3834, -675.9197, 1550398797]
+        eval_1_and_2 = [coef_1_eval, coef_2_eval]
+        for i in range(0, self.ln):
+            poly = pt.polynomial(self.coef_1_and_2[i])
+            meth_eval = poly.evaluate_values(values)
+            meth_eval = self.round_numbers(meth_eval, 4)
+            self.assertEqual(meth_eval, self.round_numbers(eval_1_and_2[i], 4))
+            
+            
 
 if __name__ == "__main__":
     unittest.main()
