@@ -74,7 +74,7 @@ class testPoly(unittest.TestCase):
             return
             poly.add_constant(constants[i])
             self.assertEqual(poly.get_coef[-1], result[i])
-       
+
 
 if __name__ == "__main__":
     unittest.main()
