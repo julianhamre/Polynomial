@@ -66,6 +66,15 @@ class testPoly(unittest.TestCase):
             poly = pt.polynomial(self.all_coef[i])
             self.assertEqual(poly.differentiate().get_coef(), all_dif[i])
 
+    def test_add_constant(self):
+        constants = [1, 104, -4, -3.6]
+        result = [4, 107, -1, -0.6] 
+        poly = pt.polynomial(self.coef_2)
+        for i in range(0, len(constants)):
+            return
+            poly.add_constant(constants[i])
+            self.assertEqual(poly.get_coef[-1], result[i])
+       
 
 if __name__ == "__main__":
     unittest.main()
