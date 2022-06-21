@@ -19,61 +19,65 @@ def round_numbers(numbers, decimals):
 
 
 class testPoly(unittest.TestCase):
-    coef_1 = [3, 2, 4]
-    coef_2 = [5, -2, 3.2942, -5, -9.52, -2]
-    all_coef = [coef_1, coef_2]
-    ln = len(all_coef)
-   
-    def test_reverse(self):
-        reversed_1 = [4, 2, 3]
-        reversed_2 = [-2, -9.52, -5, 3.2942, -2, 5]
-        all_rev = [reversed_1, reversed_2]
-        for i in range(0, self.ln):
-            func_rev = pt.reverse(self.all_coef[i])
-            self.assertEqual(all_rev[i], func_rev)
+    
+    def create_poly(self):
+        return pt.polynomial(self.coef)
+ 
+    def create_array_poly(self):
+        return pt.polynomial(np.array(self.coef))
+        
+    def setUp(self):
+        self.coef = [5, -2, 3.2942, 0, -9.52, -2]
+        self.poly = self.create_poly()
+        self.array_poly = self.create_array_poly()
 
-    def array_poly(self, i):
-         return pt.polynomial(np.array(self.all_coef[i]))
+    def test_reverse(self):
+        rev = [-2, -9.52, 0, 3.2942, -2, 5]
+        func_rev = pt.reverse(self.coef)
+        self.assertEqual(rev, func_rev)
 
     def test_get_coef(self):
-        for i in range(0, self.ln):
-            poly = self.array_poly(i)
-            gc = poly.get_coef()
-            self.assertEqual(self.all_coef[i], gc)
+        get_c = self.array_poly.get_coef()
+        self.assertEqual(self.coef, get_c)
 
     def test_coef_as_list(self):
-        for i in range(0, self.ln):
-            poly = self.array_poly(i)
-            poly.coef_as_list()
-            self.assertEqual(poly.coef, self.all_coef[i])        
-    
+        self.array_poly.coef_as_list()
+        self.assertEqual(self.poly.coef, self.coef)        
+
     def test_evaluate(self):
-        values = [0, 3, -2.54, 50]
-        coef_1_eval = [4, 37, 18.2748, 7604]
-        coef_2_eval = [-2, 1066.3834, -675.9197, 1550398797]
-        all_eval = [coef_1_eval, coef_2_eval]
-        for i in range(0, self.ln):
-            poly = pt.polynomial(self.all_coef[i])
-            meth_eval = poly.evaluate_values(values)
-            meth_eval = round_numbers(meth_eval, 4)
-            self.assertEqual(meth_eval, round_numbers(all_eval[i], 4))
+        values = [0, -3, -7.54, 56]
+        evaluated = [-2, -1439.3834, -129656.8601, 2734567867.1072]
+        method_evaluated = self.poly.evaluate_values(values)
+        round_method_evaluated = round_numbers(method_evaluated, 4)
+        self.assertEqual(round_method_evaluated, evaluated)
     
     def test_differentiate(self):
-        dif_1 = [6, 2]
-        dif_2 = [25, -8, 9.8826, -10, -9.52]
-        all_dif = [dif_1, dif_2]
-        for i in range(0, self.ln):
-            poly = pt.polynomial(self.all_coef[i])
-            self.assertEqual(poly.differentiate().get_coef(), all_dif[i])
+        dif = [25, -8, 9.8826, 0, -9.52]
+        poly_dif = self.poly.differentiate()
+        self.assertEqual(poly_dif.get_coef(), dif)
 
     def test_add_constant(self):
-        constants = [1, 104, -4, -3.6]
-        result = [4, 107, -1, -0.6] 
-        poly = pt.polynomial(self.coef_2)
-        for i in range(0, len(constants)):
-            return
-            poly.add_constant(constants[i])
-            self.assertEqual(poly.get_coef[-1], result[i])
+        constants = [0, 1, 104, -4, -3.6]
+        results = [-2, -1, 102, -6, -5.6] 
+        method_results = []
+        for i in constants:
+            self.coef = [5, -2, 3.2942, 0, -9.52, -2]
+            refresh_poly = self.create_poly()
+            refresh_poly.add_constant(i)
+            method_results.append(refresh_poly.coef[-1])
+        self.assertEqual(results, method_results) 
+
+    def round_ext(self, start_value):
+        return round_numbers(self.poly.get_extremum(start_value), 4)
+
+    def test_get_extremum(self):
+        ext_A = [-0.6226, 2.3639]
+        ext_B = [0.7365, -7.2004]
+        all_ext = [ext_A, ext_B]
+        start_values = [-0.5, 0.5]
+        for i in range(0, len(all_ext)):
+            method_ext = self.round_ext(start_values[i])
+            self.assertEqual(method_ext, all_ext[i])
 
 
 if __name__ == "__main__":
