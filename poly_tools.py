@@ -20,8 +20,11 @@ def reverse(a):
 
 
 class polynomial:
-    #Check method for later use:
-    """
+
+    def check_list_type(self):
+        if not isinstance(self.coef, list):
+            raise TypeError(f"In {self.get_coef()}, the coefficients must be type list, got {type(self.coef)}")
+
     def check_coef_type(self):
         counter = 0
         for c in self.coef:
@@ -29,23 +32,19 @@ class polynomial:
             if t not in [int, float]:
                 raise TypeError(f"In {self.get_coef()}, all coefficients must be type int or float, got {t} in element {counter}")
             counter += 1
-    """
+
     def __init__(self, coef):
         self.coef = coef
         self.r_coef = reverse(coef)
         
-        #self.check_coef_type()
-        
+        self.check_list_type()
+        self.check_coef_type()
+    
     def get_coef(self):
         a = []
         for i in self.coef:
             a.append(i)
         return a
-    
-    def coef_as_list(self):
-        coef = self.get_coef()
-        self.coef = coef
-        self.r_coef = reverse(coef)
     
     def evaluate(self, x):
         y = self.r_coef[0]
