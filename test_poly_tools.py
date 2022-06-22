@@ -27,6 +27,20 @@ class testPoly(unittest.TestCase):
         self.coef = [5, -2, 3.2942, 0, -9.52, -2]
         self.poly = self.fabricate_poly()
 
+    def test_check_list_type(self):
+        with self.assertRaises(TypeError):
+            pt.polynomial(np.array(self.coef))
+        try:
+            self.fabricate_poly()
+        except TypeError:
+            self.fail("TypeError raised when coefficients were valid type")
+
+    def test_check_coef_types(self):
+        list_of_coefs = [[1, 2, "3"], [1, np.int64(2)]]
+        for c in list_of_coefs:
+            with self.assertRaises(TypeError):
+                pt.polynomial(c)
+
     def test_reverse(self):
         rev = [-2, -9.52, 0, 3.2942, -2, 5]
         func_rev = pt.reverse(self.coef)

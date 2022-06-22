@@ -25,7 +25,7 @@ class polynomial:
         if not isinstance(self.coef, list):
             raise TypeError(f"In {self.get_coef()}, the coefficients must be type list, got {type(self.coef)}")
 
-    def check_coef_type(self):
+    def check_coef_types(self):
         counter = 0
         for c in self.coef:
             t = type(c)
@@ -38,7 +38,7 @@ class polynomial:
         self.r_coef = reverse(coef)
         
         self.check_list_type()
-        self.check_coef_type()
+        self.check_coef_types()
     
     def get_coef(self):
         a = []
