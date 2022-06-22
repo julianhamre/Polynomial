@@ -67,7 +67,7 @@ class testPoly(unittest.TestCase):
             method_results.append(refresh_poly.coef[-1])
         self.assertEqual(results, method_results) 
 
-    def round_ext(self, start_value):
+    def round_get_ext(self, start_value):
         return round_numbers(self.poly.get_extremum(start_value), 4)
 
     def test_get_extremum(self):
@@ -76,7 +76,7 @@ class testPoly(unittest.TestCase):
         all_ext = [ext_A, ext_B]
         start_values = [-0.5, 0.5]
         for i in range(0, len(all_ext)):
-            method_ext = self.round_ext(start_values[i])
+            method_ext = self.round_get_ext(start_values[i])
             self.assertEqual(method_ext, all_ext[i])
 
 
